@@ -18,13 +18,23 @@ const timeStamps = [
 //initialize local storage
 let timeValues = JSON.parse(window.localStorage.getItem("timeStamps")) || timeStamps;
 
+//add a 0 in front of id if needed
+let addFrontZero = (value) => {
+  return value < 10 ? "0" + value : value;
+};
+
 //function to change the css color
 const changeCssColor = (idKey) => {
   //get current time
   let currentTime = parseInt(moment().format("hh"));
+  console.log(`current time is: ${currentTime}  and stamp is: ${stampValue}`);
   //change the css
   if (currentTime === stampValue) {
-    $(`#${idKey}`).css("background-color", "yellow");
+    $(`#${addFrontZero(idKey)}`).css("background-color", "red");
+  } else if (currentTime < stampValue) {
+    $(`#${addFrontZero(idKey)}`).css("background-color", "green");
+  } else if (currentTime > stampValue) {
+    $(`#${addFrontZero(idKey)}`).css("background-color", "grey");
   }
 };
 
@@ -33,7 +43,7 @@ const renderTimeStamps = () => {
   for (var i = 0; i < timeStamps.length; i += 1) {
     // render the  html
     $(".container").append(
-      `<div class="container-flex-div" id="${timeStamps[i].key}" ><div id="span-div"><span id="time-span">${timeStamps[i].label}</span></div><textarea name="" id="event-text" cols="30" rows="10">${texAreaContent}</textarea><button id="container-button" class="fa fa-lock"></button></div>`
+      `<div class="container-flex-div"><div id="span-div"><span id="time-span">${timeStamps[i].label}</span></div><textarea name="" class="event-text" id="${timeStamps[i].key}" cols="30" rows="10">${texAreaContent}</textarea><button id="container-button" class="fa fa-lock"></button></div>`
     );
     //get the time stamp value
     stampValue = parseInt(timeStamps[i].key);

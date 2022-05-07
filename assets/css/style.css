@@ -84,7 +84,7 @@ textarea {
   padding: 3%;
 }
 
-#event-text {
+.event-text {
   flex-grow: 4;
   border: 1px solid black;
 }
