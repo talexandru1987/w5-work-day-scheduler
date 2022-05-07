@@ -1,6 +1,3 @@
-let hourValue = "";
-let texAreaContent = "";
-let classIdentifier = "";
 let stampValue;
 //the object used to initialize the local storage
 const timeStamps = [
@@ -98,19 +95,25 @@ const addEventListeners = () => {
   });
 };
 
+const refreshFunction = () => {
+  // declare function to execute every 1 sec
+  timeInterval = setInterval(function () {
+    renderTimeStamps();
+    console.log("refresh");
+    // if true render game over
+  }, 60000); // setInterval (1min)
+};
+
 $(document).ready(function () {
+  //initialize on load
   onLoad();
   //create the time stamps on the page
   renderTimeStamps();
   //add the button event listeners
   addEventListeners();
-  // start the timer and check past/present/future
+  //refresh every minute
 
-  // when rendering the elements, check if the timestamp is current, past, future and set css accordingly
-
-  // check if theres anything in the LS
-
-  // set a timer. On each timer tick, the function checks all the boxes for past, future, present against the current moment
+  refreshFunction();
 
   //  display current day on the page
 });
