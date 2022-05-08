@@ -1,4 +1,7 @@
 let stampValue;
+
+//target the refresh button
+const refreshButton = document.getElementById("refresh-btn");
 //the object used to initialize the local storage
 const timeStamps = [
   { label: "09AM", text: "", key: "09", index: 0 },
@@ -95,25 +98,45 @@ const addEventListeners = () => {
   });
 };
 
+// function to check the colors
 const refreshFunction = () => {
-  // declare function to execute every 1 sec
-  timeInterval = setInterval(function () {
-    renderTimeStamps();
+  // iterate through all the fields
+  for (var i = 0; i < timeStamps.length; i += 1) {
     console.log("refresh");
-    // if true render game over
-  }, 60000); // setInterval (1min)
+    stampValue = parseInt(timeStamps[i].key);
+    changeCssColor(stampValue);
+  }
+};
+
+//render the current date
+const renderDate = () => {
+  //target the current day field
+  let currentDayText = document.getElementById("currentDay");
+  currentDayText.textContent = moment().format("MMMM Do YYYY, h:mm:ss a");
+};
+
+//refresh the page and container values
+const refreshPage = () => {
+  localStorage.setItem("timeStamps", JSON.stringify(timeStamps));
+  renderDate();
+  for (var i = 0; i < timeStamps.length; i += 1) {
+    let targetKey = timeStamps[i].key;
+    let textArea = document.getElementById(targetKey);
+    textArea.textContent = "";
+  }
 };
 
 $(document).ready(function () {
   //initialize on load
   onLoad();
+  //render the date
+  renderDate();
   //create the time stamps on the page
   renderTimeStamps();
   //add the button event listeners
   addEventListeners();
-  //refresh every minute
-
-  refreshFunction();
-
-  //  display current day on the page
+  //refresh every 5 minutes
+  setInterval(refreshFunction, 300000);
+  //add event listener
+  refreshButton.addEventListener("click", refreshPage);
 });

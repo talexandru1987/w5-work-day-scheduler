@@ -94,7 +94,8 @@ textarea {
 }
 
 /*button css */
-#container-button {
+#container-button,
+#refresh-btn {
   background-color: DodgerBlue;
   border: none;
   color: white;
@@ -105,6 +106,15 @@ textarea {
 }
 
 /* Darker background on mouse-over */
-#container-button:hover {
+#container-button:hover,
+#refresh-btn:hover {
   background-color: RoyalBlue;
+}
+
+#refresh-btn {
+  border-radius: 50px 50px 50px 50px;
+}
+
+.jumbotron {
+  padding: 5px;
 }
