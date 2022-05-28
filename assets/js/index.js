@@ -65,8 +65,6 @@ const handleClickEvent = (event) => {
   //get the index in the object
   const objectIndex = target.dataset.index;
 
-  console.log(objectIndex);
-
   //target the text input
   const textAreaContent = document.getElementById(`${textAreaID}`);
 
@@ -75,8 +73,6 @@ const handleClickEvent = (event) => {
 
   //get the time stamp object from local storage
   let storeItems = JSON.parse(window.localStorage.getItem("timeStamps"));
-
-  console.log(storeItems);
 
   //set the text value in the object for local storage
   storeItems[objectIndex].text = textValue;
@@ -102,7 +98,6 @@ const addEventListeners = () => {
 const refreshFunction = () => {
   // iterate through all the fields
   for (var i = 0; i < timeStamps.length; i += 1) {
-    console.log("refresh");
     stampValue = parseInt(timeStamps[i].key);
     changeCssColor(stampValue);
   }
