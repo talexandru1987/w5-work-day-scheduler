@@ -33,6 +33,6 @@ THEN the saved events persist
 
 Link to the page: https://talexandru1987.github.io/work-day-scheduler/
 
-The following animation demonstrates the application functionality:
+Preview of the page:
 
 ![Planner preview](./assets/img/preview.png)
